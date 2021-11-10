@@ -1,6 +1,4 @@
-package main
-
-import "fmt"
+package list
 
 type Node struct {
 	Data interface{}
@@ -115,34 +113,4 @@ func (l *List) Remove(mark int) {
 		target.Next.Prev = target.Prev
 	}
 	l.size--
-}
-
-func main() {
-	l := new(List)
-	output := func() string {
-		res := ""
-		for i := 1; i <= l.Len(); i++ {
-			res += fmt.Sprintf("%d ", l.Get(i).Data)
-		}
-		return res
-	}
-	data := []int{1, 2, 3, 4, 5, 6, 7}
-
-	for _, v := range data {
-		l.PushBack(v)
-	}
-	fmt.Println(output())
-
-	l.PushFront(0)
-	l.PushFront(1)
-	l.PushFront(3)
-	fmt.Println(output())
-
-	l.Insert(1, 2)
-	fmt.Println(output())
-
-	l.Remove(1)
-	l.Remove(2)
-	l.Remove(1)
-	fmt.Println(output())
 }

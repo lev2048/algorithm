@@ -1,6 +1,4 @@
-package main
-
-import "fmt"
+package slist
 
 type Node struct {
 	Data interface{}
@@ -110,29 +108,4 @@ func (l *SingleList) Get(mark int) *Node {
 
 func (l *SingleList) Len() int {
 	return l.size
-}
-
-func main() {
-	sl := NewSingleList()
-	data := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
-	for i := range data {
-		sl.PushBack(data[len(data)-i-1])
-	}
-	outPutList := func(mark string) {
-		fmt.Printf("%s :", mark)
-		for i := 1; i < sl.Len(); i++ {
-			fmt.Printf("%d ", sl.Get(i).Data)
-		}
-		fmt.Println()
-	}
-	outPutList("Print")
-	sl.InsertAfter(2, 2)
-	outPutList("InsterAfter")
-	sl.PushFront(1)
-	outPutList("PushFront")
-	sl.Remove(1)
-	sl.Remove(2)
-	outPutList("Remove 1 2")
-	sl.Update(2, 3)
-	outPutList("Update 2=>3")
 }

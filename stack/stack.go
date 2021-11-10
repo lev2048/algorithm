@@ -1,4 +1,4 @@
-package main
+package stack
 
 import (
 	"errors"
@@ -36,16 +36,4 @@ func (s *Stack) Pop() (interface{}, error) {
 
 func (s *Stack) Print() {
 	fmt.Println(s.data, len(s.data), cap(s.data))
-}
-
-func main() {
-	sk := NewStack(10)
-	for i := 1; i < 11; i++ {
-		sk.Push(i)
-	}
-	sk.Print()
-	for i := 1; i < 11; i++ {
-		fmt.Println(sk.Pop())
-	}
-	sk.Print()
 }
