@@ -12,6 +12,7 @@ import (
  */
 
 type Queue struct {
+	len   int
 	size  int
 	rear  int
 	front int
@@ -20,6 +21,7 @@ type Queue struct {
 
 func NewQueue(size int) *Queue {
 	return &Queue{
+		len:   0,
 		front: 0,
 		rear:  0,
 		size:  size,
@@ -31,8 +33,8 @@ func (q *Queue) EnQueue(v interface{}) error {
 	if (q.rear+1)%q.size == q.front {
 		return errors.New("queue is full")
 	}
-	q.data[q.rear] = v
-	q.rear = (q.rear + 1) % q.size
+	q.data[q.rear], q.rear = v, (q.rear+1)%q.size
+	q.len++
 	return nil
 }
 
@@ -42,7 +44,12 @@ func (q *Queue) DeQueue() (interface{}, error) {
 	}
 	item := q.data[q.front]
 	q.front, q.data[q.front] = (q.front+1)%q.size, nil
+	q.len--
 	return item, nil
+}
+
+func (q *Queue) Len() int {
+	return q.len
 }
 
 func (q *Queue) OutPut() {
